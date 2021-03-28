@@ -34,6 +34,16 @@ $(BIN)/%.tst: $(TESTS_OBJECTS)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(TESTS_OBJECTS) -o $@ $(LDLIBS)
 
+.PHONY:install
+install:
+	install -D -m777 bin/libcutils.so $(DESTDIR)/usr/lib/libcutils.so
+	install -D -m644 include/*.h $(DESTDIR)/usr/include/libcutils/
+
+.PHONY:uninstall
+uninstall:
+	rm $(DESTDIR)/usr/lib/libcutils.so
+	rm -rf $(DESTDIR)/usr/include/libcutils/
+
 # phony in case a file is named clean ??
 .PHONY:clean
 clean:
