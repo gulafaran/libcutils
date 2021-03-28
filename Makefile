@@ -36,8 +36,10 @@ $(BIN)/%.tst: $(TESTS_OBJECTS)
 
 .PHONY:install
 install:
-	install -D -m777 bin/libcutils.so $(DESTDIR)/usr/lib/libcutils.so
-	install -D -m644 include/*.h $(DESTDIR)/usr/include/libcutils/
+	install -d $(DESTDIR)/usr/lib/
+	install -m 777 bin/libcutils.so $(DESTDIR)/usr/lib/libcutils.so
+	install -d $(DESTDIR)/usr/include/libcutils/
+	install -m 644 include/*.h $(DESTDIR)/usr/include/libcutils/
 
 .PHONY:uninstall
 uninstall:
